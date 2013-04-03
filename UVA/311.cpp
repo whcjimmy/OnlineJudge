@@ -1,0 +1,93 @@
+#include<cstdio>
+using namespace std;
+
+int main()
+{
+	int i,j,k,num[6],total,temp;
+	while(scanf("%d%d%d%d%d%d",&num[0],&num[1],&num[2],&num[3],&num[4],&num[5])!=EOF)
+	{
+		if(num[0]==0&&num[1]==0&&num[2]==0&&num[3]==0&&num[4]==0&&num[5]==0)
+			break;
+		total=0;
+		total+=num[5];
+		if(num[4]>0)
+		{
+			total+=num[4];
+			num[0]-=11*num[4];	
+		}
+		for(i=0;i<num[3];i++)
+		{
+			if(num[1]>=5) 
+				num[1]-=5;
+			else if(num[1]>0)
+			{
+				num[0]-=20-4*num[1];
+				num[1]=0;
+			}
+			else
+				num[0]-=20;
+			total++;
+		}
+		total+=num[2]/4;
+		num[2]=num[2]%4;
+		if(num[2]!=0)
+			total++;
+		if(num[2]==1)
+		{
+			if(num[1]>=5)
+			{
+				num[1]-=5;
+				num[0]-=7;
+			}
+			else
+			{
+				num[0]-=(5-num[1])*4+7;
+				num[1]=0;
+			}
+		}
+		else if(num[2]==2)
+		{
+			if(num[1]>=3)
+			{
+				num[1]-=3;
+				num[0]-=6;
+			}
+			else
+			{
+				num[0]-=(3-num[1])*4+6;
+				num[1]=0;
+			}
+		}
+		else if(num[2]==3)
+		{
+			if(num[1]>=1)
+			{
+				num[1]-=1;
+				num[0]-=5;
+			}
+			else
+			{
+				num[0]-=9;
+			}
+		}
+		if(num[1]>0)
+		{
+			total+=num[1]/9;
+			num[1]=num[1]%9;
+			if(num[1]!=0)
+			{
+				num[0]-=(9-num[1])*4;
+				total++;
+			}
+		}
+		if(num[0]>0)
+		{
+			total+=num[0]/36;
+			num[0]=num[0]%36;
+			if(num[0]!=0)
+				total++;
+		}
+		printf("%d\n",total);
+	}
+	return 0;
+}
