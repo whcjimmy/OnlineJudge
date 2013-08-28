@@ -8,5 +8,7 @@ set number
 set background=dark
 set ru
 set hlsearch
-colorscheme slate
+colorscheme koehler
 inoremap <BS> <Left><Del>
+set fileencodings=utf-8,big5
+set fileencoding=utf-8

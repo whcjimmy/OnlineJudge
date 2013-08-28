@@ -1,50 +1,46 @@
 #include<cstdio>
-#include<cstdlib>
 #include<algorithm>
 using namespace std;
 
 struct NODE
 {
-	int T,S,number;
-	double r;
-	bool operator<(const NODE&t) const
-	{
-		return r>t.r;
-	}
-};
+    int number;
+    double ratio;
+    bool operator<(const NODE&t)const
+    {
+	if(ratio==t.ratio&&number>t.number)
+	    return true;
+	if(ratio<t.ratio)
+	    return true;
+	return false;
+    }
+}n[1001];
 
 int main()
 {
-
-	int a,c,i,j,n;
-	NODE p[1010];
-	while(scanf("%d",&c)!=EOF)
+    int A,N,i,j,T,S;
+    while(scanf("%d",&A)!=EOF)
+    {
+	for(i=0;i<A;i++)
 	{
-		for(j=0;j<c;j++)
-		{
-			a=0;
-			scanf("%d",&n);
-			for(i=0;i<n;i++)
-			{
-				scanf("%d %d",&p[i].T,&p[i].S);
-				p[i].number=i+1;
-				p[i].r=p[i].S/p[i].T;
-			}
-			sort(p,p+n);
-			for(i=0;i<n;i++)
-				if(a==0)
-				{
-					printf("%d",p[i].number);
-					a=1;
-				}
-				else
-					printf(" %d",p[i].number);
-
-			printf("\n");
-			if(j!=c-1)
-				printf("\n");
-		}
+	    if(i)
+		printf("\n");
+	    scanf("%d",&N);
+	    for(j=0;j<N;j++)
+	    {
+		scanf("%d%d",&T,&S);
+		n[j].number=j+1;
+		n[j].ratio=(double)S/T;
+	    }
+	    sort(n,n+N);
+	    for(j=(N-1);j>=0;j--)
+	    {
+		printf("%d",n[j].number);
+		if(j) printf(" ");
+	    }
+	    printf("\n");
 	}
-	return 0;
+    }
+    return 0;
 }
 

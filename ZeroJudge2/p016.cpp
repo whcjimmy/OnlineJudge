@@ -6,7 +6,7 @@ int main()
 {
     long long int n, count, len, a, b;
     char c[100000];
-    while(scanf("%d", &n) != EOF){
+    while(scanf("%lld", &n) != EOF){
         for(int i = 0; i < n; i++){
             a=b=count=0;
             scanf("%s", c);

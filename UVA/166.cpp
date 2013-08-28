@@ -14,8 +14,6 @@ int main()
 			scanf("%d.%d",&a,&b);
 			value=a*100+b;	
 			for(int i=0;i<501;i++)
-				
-
 
 	return 0;
 }

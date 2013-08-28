@@ -3,8 +3,8 @@
 
 int main()
 {
-	long long int a;
-	while(scanf("%lld",&a)!=EOF&&(a>=0))
-		printf("%lld\n",(2+(a-1)*(a+2)/2));
-	return 0;
+    long long int a;
+    while(scanf("%lld",&a)!=EOF&&(a>=0))
+	printf("%lld\n",(2+(a-1)*(a+2)/2));
+    return 0;
 }
