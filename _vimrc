@@ -8,7 +8,8 @@ set number
 set background=dark
 set ru
 set hlsearch
-colorscheme koehler
+colorscheme torte
+set guifont=Consolas\12
 inoremap <BS> <Left><Del>
 set fileencodings=utf-8,big5
 set fileencoding=utf-8
