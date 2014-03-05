@@ -1,90 +1,97 @@
 #include<cstdio>
+#include<cstring>
+#include<iostream>
 #include<string>
-#include<algorithm>
 #include<map>
 using namespace std;
 
+void set_digit();
+map<char, char> digit;
 int main()
 {
-	int times,cases,temp,i,j,k,t;
-	while(scanf("%d",&times)!=EOF)
-		for(t=0;t<times;t++)
+    int T, N, t, a;
+    char s[9];
+    string str, temp;
+    map<string, int> mymap;
+    map<string, int>::iterator it;
+    set_digit();
+    a = 0;
+
+    cin>>T;
+    while(T--)
+    {
+	mymap.clear();
+	cin>>N;
+	while(N--)
+	{
+	    t = 0;
+	    memset(s, 0, sizeof(s));
+	    s[3] = '-';
+	    s[8] = '\0';
+	    cin>>str;
+	    for(int i=0; i<str.length(); i++)
+		if(str[i] != '-')
 		{
-			scanf("%d",&cases);
-			char c[100000];
-			map<int,int> mymap;
-			map<int,int> ::iterator it;
-			for(i=0;i<cases;i++)
-			{
-				temp=j=0;
-				scanf("%s",c);
-				while(c[j]!='\0')
-				{
-					if(c[j]!='-')
-						if(c[j]<58) temp=temp*10+c[j]-48;
-						else
-							switch(c[j])
-							{
-							case 'A':
-							case 'B':
-							case 'C':
-								temp=temp*10+2;
-								break;
-							case 'D':
-							case 'E':
-							case 'F':
-								temp=temp*10+3;
-								break;
-							case 'G':
-							case 'H':
-							case 'I':
-								temp=temp*10+4;
-								break;
-							case 'J':
-							case 'K':
-							case 'L':
-								temp=temp*10+5;
-								break;
-							case 'M':
-							case 'N':
-							case 'O':
-								temp=temp*10+6;
-								break;
-							case 'P':
-							case 'R':
-							case 'S':
-								temp=temp*10+7;
-								break;
-							case 'T':
-							case 'U':
-							case 'V':
-								temp=temp*10+8;
-								break;
-							case 'W':
-							case 'X':
-							case 'Y':
-								temp=temp*10+9;
-								break;
-							}
-					j++;
-				}
-				if(mymap.find(temp)!=mymap.end())
-					mymap[temp]++;
-				else
-					mymap.insert(pair<int,int>(temp,0));
-			}
-			i=0;
-			for(it=mymap.begin();it!=mymap.end();++it)
-				if(it->second!=0)
-				{
-					printf("%d-%d %d\n",it->first/10000,it->first%10000,it->second+1);
-					i=1;
-				}
-			if(i==0)
-				printf("No duplicates.\n");
-			if(t!=(times-1))
-				printf("\n");
-			mymap.clear();
+		    if(t == 3) t++;
+		    s[t++] = digit.find(str[i])->second;
+		    if(t == 8) break;
 		}
-	return 0;
+	    string temp(s);
+	    if(mymap.find(temp) == mymap.end())
+		mymap.insert(pair<string, int>(temp, 1));
+	    else
+		mymap[temp]++;
+	}
+	if(a) cout<<endl;
+	a = 1;
+
+	t = 0;
+	for(it = mymap.begin(); it != mymap.end(); ++it)
+	    if(it->second != 1)
+	    {
+		cout<<it->first<<" "<<it->second<<endl;
+		t++;
+	    }
+	if(t == 0)
+	    cout<<"No duplicates.\n";
+    }
+    return 0;
+}
+
+void set_digit()
+{
+    digit.insert(pair<char, char>('0', '0'));
+    digit.insert(pair<char, char>('1', '1'));
+    digit.insert(pair<char, char>('2', '2'));
+    digit.insert(pair<char, char>('3', '3'));
+    digit.insert(pair<char, char>('4', '4'));
+    digit.insert(pair<char, char>('5', '5'));
+    digit.insert(pair<char, char>('6', '6'));
+    digit.insert(pair<char, char>('7', '7'));
+    digit.insert(pair<char, char>('8', '8'));
+    digit.insert(pair<char, char>('9', '9'));
+    digit.insert(pair<char, char>('A', '2'));
+    digit.insert(pair<char, char>('B', '2'));
+    digit.insert(pair<char, char>('C', '2'));
+    digit.insert(pair<char, char>('D', '3'));
+    digit.insert(pair<char, char>('E', '3'));
+    digit.insert(pair<char, char>('F', '3'));
+    digit.insert(pair<char, char>('G', '4'));
+    digit.insert(pair<char, char>('H', '4'));
+    digit.insert(pair<char, char>('I', '4'));
+    digit.insert(pair<char, char>('J', '5'));
+    digit.insert(pair<char, char>('K', '5'));
+    digit.insert(pair<char, char>('L', '5'));
+    digit.insert(pair<char, char>('M', '6'));
+    digit.insert(pair<char, char>('N', '6'));
+    digit.insert(pair<char, char>('O', '6'));
+    digit.insert(pair<char, char>('P', '7'));
+    digit.insert(pair<char, char>('R', '7'));
+    digit.insert(pair<char, char>('S', '7'));
+    digit.insert(pair<char, char>('T', '8'));
+    digit.insert(pair<char, char>('U', '8'));
+    digit.insert(pair<char, char>('V', '8'));
+    digit.insert(pair<char, char>('W', '9'));
+    digit.insert(pair<char, char>('X', '9'));
+    digit.insert(pair<char, char>('Y', '9'));
 }

@@ -16,3 +16,5 @@
 *.in
 *.out
 *.swp
+*.in~
+*.out~
